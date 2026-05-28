@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Victoria Speed Camera Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #555; }
+        .container { max-width: 1200px; margin: auto; }
+        iframe { width: 100%; border: none; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .map { height: 700px; }
+        .chart { height: 600px; }
+        .row { display: flex; gap: 20px; }
+        .col { flex: 1; }
+        @media (max-width: 768px) { .row { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚦 Victoria Speed Camera Dashboard</h1>
+        
+        <h2>Interactive Map</h2>
+        <iframe class="map" src="victoria_camera_map.html"></iframe>
+        
+        <div class="row">
+            <div class="col">
+                <h2>Cameras by LGA</h2>
+                <iframe class="chart" src="chart_lga_cameras_per_capita.html"></iframe>
+            </div>
+            <div class="col">
+                <h2>Camera Types</h2>
+                <iframe class="chart" src="chart_camera_types.html"></iframe>
+            </div>
+        </div>
+        
+        <h2>Cameras vs Population</h2>
+        <iframe class="chart" src="chart_cameras_vs_population.html" style="height: 500px;"></iframe>
+    </div>
+</body>
+</html>
