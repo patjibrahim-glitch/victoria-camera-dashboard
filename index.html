@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Victoria Speed Camera Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
+               background: #0f0f1a; color: #e0e0e0; }
+        .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); 
+                  padding: 30px; text-align: center; border-bottom: 3px solid #e94560; }
+        .header h1 { font-size: 2.2em; color: #fff; margin-bottom: 5px; }
+        .header p { color: #aaa; font-size: 1.1em; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .map-container { background: #1a1a2e; border-radius: 12px; padding: 15px; margin-bottom: 25px; 
+                         box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .map-container iframe { width: 100%; height: 700px; border: none; border-radius: 8px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
+        .card { background: #1a1a2e; border-radius: 12px; padding: 15px; 
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .card iframe { width: 100%; height: 550px; border: none; border-radius: 8px; }
+        .card h2 { color: #e94560; margin-bottom: 10px; font-size: 1.2em; padding-left: 5px; }
+        .full-width { grid-column: 1 / -1; }
+        .stats-row { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .stat-box { background: #1a1a2e; border-radius: 12px; padding: 20px 25px; flex: 1; min-width: 150px;
+                     text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .stat-box .number { font-size: 2em; font-weight: bold; color: #e94560; }
+        .stat-box .label { color: #aaa; font-size: 0.9em; margin-top: 5px; }
+        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+        .footer { text-align: center; padding: 30px; color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚦 Victoria Speed Camera Dashboard</h1>
+        <p>Interactive analysis of speed cameras, demographics, and public transport across Victoria</p>
+    </div>
+    
+    <div class="container">
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="number">2,781</div>
+                <div class="label">Total Cameras</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">80</div>
+                <div class="label">LGAs</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">1.24</div>
+                <div class="label">Avg Cameras per 1,000 People</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">2,217</div>
+                <div class="label">Mobile Cameras</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">208</div>
+                <div class="label">Fixed Cameras</div>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <h2>🗺️ Interactive LGA Map</h2>
+            <p style="color: #aaa; margin-bottom: 10px;">Circle size = total cameras. Click an LGA for details.</p>
+            <iframe src="victoria_camera_map.html"></iframe>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h2>📊 Cameras per 1,000 People</h2>
+                <iframe src="chart1_per_capita.html"></iframe>
+            </div>
+            <div class="card">
+                <h2>🎯 Camera Type Breakdown</h2>
+                <iframe src="chart2_types.html"></iframe>
+            </div>
+            <div class="card">
+                <h2>🏆 Top 10 Suburbs</h2>
+                <iframe src="chart3_top_suburbs.html"></iframe>
+            </div>
+            <div class="card">
+                <h2>💥 Cameras vs Crashes</h2>
+                <iframe src="chart4_crashes.html"></iframe>
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="card full-width">
+                <h2>🚇 Cameras vs Public Transport</h2>
+                <p style="color: #aaa; margin-bottom: 10px;">Use the dropdown to toggle between transport modes</p>
+                <iframe src="chart5_pt_interactive.html" style="height: 580px;"></iframe>
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="card full-width">
+                <h2>💰 Camera Density vs Median Income</h2>
+                <iframe src="chart6_income.html" style="height: 550px;"></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        Data sources: VicRoads, ABS 2021 Census, Public Transport Victoria<br>
+        Built with Python, Folium, and Plotly
+    </div>
+</body>
+</html>
